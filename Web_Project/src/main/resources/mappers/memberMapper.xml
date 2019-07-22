@@ -12,6 +12,8 @@
     	
     	from tbl_member order by userName
     </select>
+    
+    
     <insert id="insertMember">
     	insert into tbl_member(user_id, user_pw, user_name, user_email)
     	values
