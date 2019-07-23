@@ -58,10 +58,14 @@
     
     <tr>
        <td colspan="2" align="center">
-          <input type="button" value="수정" id="btnUpdate" >
+          <input type="button" value="수정" id="btnUpdate">
           <input type="button" value="삭제" id="btnDelete">
        </td>
-    
+    </tr>
+    <tr>
+    	<td colspan="2" align="center">
+    	<span style="color:red;">${message}</span>
+    	</td>
     </tr>
    </table>
 </form>

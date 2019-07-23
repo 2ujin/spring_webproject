@@ -63,6 +63,7 @@ public class MemberController {
 		}else {
 			MemberVO vo2 = memberService.viewMember(vo.getUserId());
 			model.addAttribute("dto", vo);
+			model.addAttribute("message", "비밀번호 일치하지 않는다.");
 			return "member/member_view";
 		}	
 	}
