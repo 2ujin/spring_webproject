@@ -30,9 +30,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO viewMember() {
+	public MemberVO viewMember(String userId) {
 		// TODO Auto-generated method stub
-		return null;
+		return memberDao.viewMember(userId);
 	}
 
 	@Override

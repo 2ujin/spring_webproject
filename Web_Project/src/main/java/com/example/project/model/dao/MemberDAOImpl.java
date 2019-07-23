@@ -29,9 +29,9 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberVO viewMember() {
+	public MemberVO viewMember(String userId) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("member.viewMember", userId);
 	}
 
 	@Override

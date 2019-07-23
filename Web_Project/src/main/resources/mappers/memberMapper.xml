@@ -19,4 +19,13 @@
     	values
     	(#{userId}, #{userPw}, #{userName}, #{userEmail})
     </insert>
+    
+    <select id="viewMember" resultType="com.example.project.model.dto.MemberVO">
+    	select user_id as userId,
+    	user_name as userName,
+    	user_email as userEmail,
+    	user_regdate as userRegdate
+    	from tbl_member
+    	where user_id = #{userId} 
+    </select>
   </mapper>
