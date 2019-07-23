@@ -28,4 +28,26 @@
     	from tbl_member
     	where user_id = #{userId} 
     </select>
+    
+    <update id="updateMember">
+    	update tbl_member
+    	set
+    	user_pw = #{userPw},
+    	user_name = #{userName},
+    	user_email = #{userEmail},
+    	user_regdate = now()
+    	where user_id = #{userId}   	
+    </update>
+    
+    <delete id="deleteMember">
+    	delete from tbl_member
+    	where user_id = #{userId}
+    </delete>
+    
+    <select id="checkPw" resultType="int">
+    	select 
+    	 count(*)
+    	from tbl_member
+    	where user_id = #{userId} and user_pw = #{userPw}
+    </select>
   </mapper>

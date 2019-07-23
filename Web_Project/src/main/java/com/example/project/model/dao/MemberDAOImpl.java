@@ -1,6 +1,8 @@
 package com.example.project.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -37,13 +39,26 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void updateMember(MemberVO vo) {
 		// TODO Auto-generated method stub
-		
+		sqlSession.update("member.updateMember", vo);
 	}
 
 	@Override
-	public void deleteMember(String userId) {
+	public void deleteMember(MemberVO vo) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("member.deleteMember", vo);
+	}
+
+	@Override
+	public boolean checkPw(String userId, String userPw) {
 		// TODO Auto-generated method stub
 		
+		boolean result = false;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		map.put("userPw", userPw);
+		int count = sqlSession.selectOne("member.checkPw", map);
+		if(count==1) result=true;
+		return result;
 	}
 
 }

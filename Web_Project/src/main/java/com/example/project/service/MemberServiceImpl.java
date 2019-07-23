@@ -37,14 +37,22 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void updateMember(MemberVO vo) {
-		// TODO Auto-generated method stub
+		memberDao.updateMember(vo);
 		
 	}
 
 	@Override
-	public void deleteMember(String userId) {
+	public void deleteMember(MemberVO vo) {
 		// TODO Auto-generated method stub
-		
+		memberDao.deleteMember(vo);
 	}
+	
+	@Override
+	public boolean checkPw(String userId, String userPw) {
+		// TODO Auto-generated method stub
+		return memberDao.checkPw(userId, userPw);
+	}
+	
+	
 
 }

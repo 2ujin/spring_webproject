@@ -47,7 +47,30 @@ public class MemberController {
 	
 	@RequestMapping("member/view.do")
 	public String memberView(String userId, Model model) {
-		model. addAttribute("dto", memberService.viewMember(userId));
-		return userId;
+		model.addAttribute("dto", memberService.viewMember(userId));
+		return "member/member_view";
+		
+	}
+	
+	// 5. 회원정보 수정하기
+	@RequestMapping("member/update.do")
+	public String memberUpdate(@ModelAttribute MemberVO vo, Model model) {
+		
+		boolean result = memberService.checkPw(vo.getUserId(), vo.getUserPw());
+		if(result) {
+			memberService.updateMember(vo);
+			return "redirect:/member/list.do";
+		}else {
+			MemberVO vo2 = memberService.viewMember(vo.getUserId());
+			model.addAttribute("dto", vo);
+			return "member/member_view";
+		}	
+	}
+	
+	// 6. 회원정보 삭제하기
+	@RequestMapping("member/delete.do")
+	public String memberDelete(@ModelAttribute MemberVO vo) {
+		memberService.deleteMember(vo);
+		return "redirect:/member/list.do";
 	}
 }

@@ -18,7 +18,11 @@ public interface MemberService {
 	public void updateMember(MemberVO vo);
 	
 	//5. 회원정보 삭제하기
-	public void deleteMember(String userId);
+	public void deleteMember(MemberVO vo);
+
+	//6. 비밀번호 확인
+	public boolean checkPw(String userId, String userPw);
+	
 	
 
 }
