@@ -25,19 +25,19 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public BoardVO read(int bno) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("board.view", bno);
 	}
 
 	@Override
 	public void update(BoardVO vo) {
 		// TODO Auto-generated method stub
-		
+		sqlSession.update("board.update", vo);
 	}
 
 	@Override
 	public void delete(int bno) {
 		// TODO Auto-generated method stub
-		
+		sqlSession.delete("board.delete", bno);
 	}
 
 	@Override

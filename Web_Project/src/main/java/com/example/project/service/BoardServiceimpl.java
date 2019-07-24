@@ -24,19 +24,19 @@ public class BoardServiceimpl implements BoardService{
 	@Override
 	public BoardVO read(int bno) {
 		// TODO Auto-generated method stub
-		return null;
+		return BoardDao.read(bno);
 	}
 
 	@Override
 	public void update(BoardVO vo) {
 		// TODO Auto-generated method stub
-		
+		BoardDao.update(vo);
 	}
 
 	@Override
 	public void delete(int bno) {
 		// TODO Auto-generated method stub
-		
+		BoardDao.delete(bno);
 	}
 
 	@Override

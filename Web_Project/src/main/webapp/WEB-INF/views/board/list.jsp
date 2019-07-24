@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="../include/member_header.jsp" %>
+	<%@ include file="../include/member_menu.jsp" %>
 	<h2> 게시글 목록 </h2>
 	<input type="button" value="게시글등록" onclick="location.href='${path}/board/write.do'">
 	<table border="1" width="700px">
@@ -22,7 +22,7 @@
 		<c:forEach var="row" items="${list}">
 		<tr>
 			<td> ${row.bno} </td>
-			<td> <a href="${path}/board/view.do?userId=${row.bno}">${row.title}</a> </td>
+			<td> <a href="${path}/board/view.do?bno=${row.bno}">${row.title}</a> </td>
 			<td> ${row.writer} </td>
 			<td> <fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd"/> 
 			</td>

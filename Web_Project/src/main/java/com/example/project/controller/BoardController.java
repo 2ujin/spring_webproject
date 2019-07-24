@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +20,7 @@ public class BoardController {
 	BoardServiceimpl boardService;
 	
 	//1. 게시글의 목록 보기
-	@RequestMapping("/board/write.do") //원래는 list.do
+	@RequestMapping("/board/list.do") //원래는 list.do
 	public ModelAndView list() {
 		
 		List<BoardVO> list = boardService.listAll();
@@ -36,10 +37,20 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board/view");
 		mav.addObject("dto", boardService.read(bno));
-		
 		return mav;
 	}
 	
+	//3.게시글 수정하기
+	@RequestMapping("/board/update.do")
+	public String update(@ModelAttribute BoardVO vo) {
+		boardService.update(vo);
+		return "redirect:list.do";
+	}
 	
-	
+	//4.게시글 삭제하기
+	@RequestMapping("/board/delete.do")
+	public String delete(@RequestParam int bno) {
+		boardService.delete(bno);
+		return "redirect:list.do";
+	}
 }
