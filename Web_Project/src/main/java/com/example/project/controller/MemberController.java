@@ -44,7 +44,6 @@ public class MemberController {
 	}
 	
 	// 4. 회원 상세 보기
-	
 	@RequestMapping("member/view.do")
 	public String memberView(String userId, Model model) {
 		model.addAttribute("dto", memberService.viewMember(userId));

@@ -15,7 +15,6 @@ import com.example.project.model.dto.MemberVO;
 public class MemberDAOImpl implements MemberDAO {
 
 	@Inject
-	
 	SqlSession sqlSession;
 	
 	@Override
