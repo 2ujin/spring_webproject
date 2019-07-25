@@ -29,4 +29,16 @@
   delete from tbl_board
   where bno=#{bno}
   </delete>
+  
+  <update id="increaseViewcnt">
+  update tbl_board
+  set
+  viewcnt = viewcnt+1
+  where bno=#{bno}
+  </update>
+  
+  <insert id="insert">
+    insert into tbl_board(title, content, writer)
+    values(#{title}, #{content}, #{writer})
+   </insert>
   </mapper>

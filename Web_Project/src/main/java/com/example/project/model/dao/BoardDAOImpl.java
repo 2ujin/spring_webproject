@@ -19,7 +19,7 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public void create(BoardVO vo) {
 		// TODO Auto-generated method stub
-		
+		sqlSession.insert("board.insert", vo);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public void increaseViewcnt(int bno) {
 		// TODO Auto-generated method stub
-		
+		sqlSession.update("board.increaseViewcnt", bno);
 	}
 
 }

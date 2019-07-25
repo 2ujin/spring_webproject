@@ -50,4 +50,6 @@
     	from tbl_member
     	where user_id = #{userId} and user_pw = #{userPw}
     </select>
+   
+
   </mapper>

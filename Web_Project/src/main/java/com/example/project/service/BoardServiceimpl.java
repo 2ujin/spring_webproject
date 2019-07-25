@@ -3,6 +3,7 @@ package com.example.project.service;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,14 @@ public class BoardServiceimpl implements BoardService{
 	@Override
 	public void create(BoardVO vo) {
 		// TODO Auto-generated method stub
+		String title = vo.getTitle();
+		String content = vo.getContent();
+		String writer = vo.getWriter();
 		
+		vo.setTitle(title);
+		vo.setContent(content);
+		vo.setWriter(writer);
+		BoardDao.create(vo);
 	}
 
 	@Override
@@ -46,9 +54,18 @@ public class BoardServiceimpl implements BoardService{
 	}
 
 	@Override
-	public void increaseViewcnt(int bno) {
-		// TODO Auto-generated method stub
+	public void increaseViewcnt(int bno, HttpSession session) {
 		
+		BoardDao.increaseViewcnt(bno);
+		
+		/*
+		long update_time = 0;
+		
+		long current_time = System.currentTimeMillis();
+		if(current_time-update_time > 5*1000) {
+			
+		}
+		*/
 	}
 
 }

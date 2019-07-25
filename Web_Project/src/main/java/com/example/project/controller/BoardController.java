@@ -3,6 +3,7 @@ package com.example.project.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,7 +34,8 @@ public class BoardController {
 	
 	//2. 게시글 상세보기 (보기, 조회수 증가)
 	@RequestMapping("/board/view.do")
-	public ModelAndView view(@RequestParam int bno) {
+	public ModelAndView view(@RequestParam int bno, HttpSession session) {
+		boardService.increaseViewcnt(bno, session);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board/view");
 		mav.addObject("dto", boardService.read(bno));
@@ -53,4 +55,18 @@ public class BoardController {
 		boardService.delete(bno);
 		return "redirect:list.do";
 	}
+	
+	//5. 게시글 추가하기
+	@RequestMapping("/board/write.do")
+	public String write() {
+		return "board/write";
+	}
+	
+	//6. 게시글 작성하기
+	@RequestMapping("/board/insert.do")
+	public String insert(BoardVO vo) {
+		boardService.create(vo);
+		return "redirect:list.do";
+	}
+	
 }

@@ -4,13 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="../include/member_header.jsp" %>
-<title>Insert title here</title>
+<%@ include file="../include/board_header.jsp" %>
+<title>게시글 목록</title>
+<script>
+ $(document).ready(function(){
+	$("#btnWrite").click(function(){
+		location.href="${path}/board/write.do"
+	}) 
+ });
+</script>
 </head>
 <body>
 	<%@ include file="../include/member_menu.jsp" %>
 	<h2> 게시글 목록 </h2>
-	<input type="button" value="게시글등록" onclick="location.href='${path}/board/write.do'">
+	<button type="button" id="btnWrite">글쓰기</button>
+	
 	<table border="1" width="700px">
 		<tr>
 			<th> 번호 </th>
@@ -24,8 +32,7 @@
 			<td> ${row.bno} </td>
 			<td> <a href="${path}/board/view.do?bno=${row.bno}">${row.title}</a> </td>
 			<td> ${row.writer} </td>
-			<td> <fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd"/> 
-			</td>
+			<td> <fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd"/></td>
 			<td>  </td>
 		</tr>
 		</c:forEach>

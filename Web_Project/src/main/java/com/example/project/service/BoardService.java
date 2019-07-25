@@ -2,6 +2,8 @@ package com.example.project.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.example.project.model.dto.BoardVO;
 
 public interface BoardService {
@@ -21,5 +23,5 @@ public interface BoardService {
 	public List<BoardVO> listAll();
 	
 	//6. 게시글 조회하기
-	public void increaseViewcnt(int bno);
+	public void increaseViewcnt(int bno, HttpSession session);
 }

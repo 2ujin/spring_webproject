@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 보기</title>
-<%@ include file="../include/member_header.jsp" %>
+<%@ include file="../include/board_header.jsp" %>
 <script>
 $(document).ready(function() {
 	 $("#btnDelete").click(function() {
@@ -37,7 +37,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<%@ include file="../include/member_menu.jsp" %>
+<%@ include file="../include/board_menu.jsp" %>
 <h2>게시글 보기</h2>
 <form name="form1" method="post">
 <table width="400">
