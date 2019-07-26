@@ -9,6 +9,16 @@ public class BoardVO {
 	private String writer;
 	private Date regdate;
 	
+	private String userName;
+	
+	public String getUserName() {
+		return userName;
+	}
+	
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 	public int getBno() {
 		return bno;
 	}

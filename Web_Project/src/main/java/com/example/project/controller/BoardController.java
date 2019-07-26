@@ -73,7 +73,10 @@ public class BoardController {
 	
 	//6. 게시글 작성하기
 	@RequestMapping("/board/insert.do")
-	public String insert(BoardVO vo) {
+	public String insert(BoardVO vo, HttpSession session) {
+		String writer = (String)session.getAttribute("userId");
+		vo.setWriter(writer);
+		
 		boardService.create(vo);
 		return "redirect:list.do";
 	}

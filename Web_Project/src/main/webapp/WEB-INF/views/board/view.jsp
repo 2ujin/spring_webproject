@@ -58,14 +58,17 @@ $(document).ready(function() {
 		<td><textarea id="content" name="content" size="30">${dto.content}</textarea></td>
 	</tr>
 	<tr> 
-		<td>이름</td>
-		<td><input id = "writer" name="writer" value="${dto.writer}" size="30"></td>
+		<td>글쓴이</td>
+		<c:out value="${sessionScope.userId}"/>
+		<td><input type="hidden" name="writer" id="writer" value="${dto.writer}"></td>
 	</tr>
+	
 	<tr>
        <td colspan="2" align="center">
-          <input type="hidden" name="bno" value="${dto.bno}">
+          <c:if test="${sessionScope.userId==dto.writer}">
           <input type="button" value="수정" id="btnUpdate">
           <input type="button" value="삭제" id="btnDelete">
+		  </c:if>
        </td>
     </tr>
 </table>

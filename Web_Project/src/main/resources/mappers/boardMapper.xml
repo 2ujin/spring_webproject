@@ -4,22 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="board">
+  <!-- 1. 목록 조회 및 검색 -->
   	<select id="listAll" resultType="com.example.project.model.dto.BoardVO">
   	 select
-  	 bno, title, content, writer, regdate, viewcnt
-  	 from tbl_board
+  	 bno, title, content, b.regdate, viewcnt, user_name as writer
+  	 from 
+  	 tbl_board b, tbl_member m
   	 <include refid="search"></include>
-  	 order by bno asc
+  	 order by 
+  	 bno asc, regdate desc
   	</select>
   
   <select id="countArticle" resultType="int">
-  select count(*) from tbl_board
+  select count(*) from tbl_board b, tbl_member m
   	<include refid="search"></include>
   </select>
   
+  <!-- 상세보기 -->
   <select id="view" resultType="com.example.project.model.dto.BoardVO">
-  select * from tbl_board 
-  where bno=#{bno}
+  select bno, title, writer, content, b.regdate, viewcnt, user_name as userName from tbl_board b, tbl_member m 
+  where b.writer = m.user_id and bno=#{bno}
   </select>
   
   <update id="update">
@@ -51,9 +55,13 @@
    <sql id="search">
 	<choose>
 		<when test="searchoption.equals('all')">
-			WHERE writer like concat('%', #{keyword}, '%')
+		
+			WHERE b.writer = m.user_id
+			and 
+			
+			(user_name like concat('%', #{keyword}, '%')
 			OR content like concat('%', #{keyword}, '%')
-			OR title like concat('%', #{keyword}, '%')
+			OR title like concat('%', #{keyword}, '%'))
 		</when>
 		<otherwise>
 			WHERE ${searchoption} like concat('%', #{keyword}, '%')

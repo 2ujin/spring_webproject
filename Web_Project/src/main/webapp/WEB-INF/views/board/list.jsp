@@ -38,7 +38,9 @@
 		</select>
 		<input name="keyword" value="${map.keyword}">
 		<input type="submit" value="조회">
+		<c:if test="${sessionScope.userId != null}">
 		<button type="button" id="btnWrite">글쓰기</button>
+		</c:if>
 	</form>
 	${map.count}개의 게시물이 있습니다.
 	

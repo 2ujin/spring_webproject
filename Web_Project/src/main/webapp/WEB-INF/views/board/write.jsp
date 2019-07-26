@@ -34,10 +34,10 @@
 	내용
 		<textarea name="content" id="content" rows="4" cols="80" placeholder="내용을 입력해주세요"></textarea>
 	</div>
-		<div>
-	제목
+	<!--  <div>
+	이름
 		<input name="writer" size="80" placeholder="이름을 입력해주세요">
-	</div>
+	</div> -->
 	<div style="width:650px; text-align: center;">
 		<button type="button" id="btnSave">확인</button>
 		<button type="reset">취소</button>
