@@ -18,6 +18,7 @@ public class LoginDAOImpl implements LoginDAO{
 	public boolean loginCheck(MemberVO vo) {
 		// TODO Auto-generated method stub
 		String name = sqlSession.selectOne("login.loginCheck", vo);
+		System.out.print(name);
 		return (name==null)?false:true;
 	}
 

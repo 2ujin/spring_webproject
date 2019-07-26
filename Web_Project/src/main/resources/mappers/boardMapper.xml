@@ -8,8 +8,14 @@
   	 select
   	 bno, title, content, writer, regdate, viewcnt
   	 from tbl_board
+  	 <include refid="search"></include>
   	 order by bno asc
   	</select>
+  
+  <select id="countArticle" resultType="int">
+  select count(*) from tbl_board
+  	<include refid="search"></include>
+  </select>
   
   <select id="view" resultType="com.example.project.model.dto.BoardVO">
   select * from tbl_board 
@@ -41,4 +47,18 @@
     insert into tbl_board(title, content, writer)
     values(#{title}, #{content}, #{writer})
    </insert>
+   
+   <sql id="search">
+	<choose>
+		<when test="searchoption.equals('all')">
+			WHERE writer like concat('%', #{keyword}, '%')
+			OR content like concat('%', #{keyword}, '%')
+			OR title like concat('%', #{keyword}, '%')
+		</when>
+		<otherwise>
+			WHERE ${searchoption} like concat('%', #{keyword}, '%')
+		</otherwise>
+	</choose>    
+   </sql>
+
   </mapper>

@@ -1,6 +1,8 @@
 package com.example.project.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -22,14 +24,21 @@ public class BoardController {
 	
 	//1. 게시글의 목록 보기
 	@RequestMapping("/board/list.do") //원래는 list.do
-	public ModelAndView list() {
+	public ModelAndView list(@RequestParam(defaultValue="title")String searchoption, @RequestParam(defaultValue="")String keyword){
 		
-		List<BoardVO> list = boardService.listAll();
+		List<BoardVO> list = boardService.listAll(searchoption, keyword);
+		int count = boardService.countArticle(searchoption, keyword);
+		
 		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("searchoption", searchoption);
+		map.put("keyword", keyword);
+		mav.addObject("map", map);
 		mav.setViewName("board/list");
-		mav.addObject("list", list);
-		
 		return mav;
+		
 	}
 	
 	//2. 게시글 상세보기 (보기, 조회수 증가)

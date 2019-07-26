@@ -22,7 +22,6 @@ public class LoginServiceImpl implements LoginService{
 			session.setAttribute("userId", vo2.getUserId());
 			session.setAttribute("userName", vo2.getUserName());
 		}
-		
 		return result;
 	}
 
@@ -35,7 +34,7 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public void logout(HttpSession session) {
 		// TODO Auto-generated method stub
-		
+		session.invalidate();
 	}
 
 }

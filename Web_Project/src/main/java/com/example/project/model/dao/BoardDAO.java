@@ -18,10 +18,11 @@ public interface BoardDAO {
 	public void delete(int bno);
 	
 	//5. 게시글 목록보기
-	public List<BoardVO> listAll();
+	public List<BoardVO> listAll(String searchoption, String keyword);
 	
 	//6. 게시글 조회하기
 	public void increaseViewcnt(int bno);
 	
-	
+	//7. 게시글 레코드 객수
+	public int countArticle(String searchoption, String keyword);
 }

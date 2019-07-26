@@ -48,9 +48,13 @@ public class BoardServiceimpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> listAll() {
+	public List<BoardVO> listAll(String searchoption, String keyword) {
 		// TODO Auto-generated method stub
-		return BoardDao.listAll();
+		return BoardDao.listAll(searchoption, keyword);
+	}
+	
+	public int countArticle(String searchoption, String keyword) {
+		return BoardDao.countArticle(searchoption, keyword);
 	}
 
 	@Override

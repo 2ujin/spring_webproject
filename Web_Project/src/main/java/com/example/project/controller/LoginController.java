@@ -37,8 +37,15 @@ public class LoginController {
 		}
 		
 		return mav;
-		
 		// mav.setViewName("login/login");
 	}
-
+	
+	@RequestMapping("login/logout.do")
+	public ModelAndView logout(HttpSession session) {
+		loginServie.logout(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login/login");
+		mav.addObject("msg", "logout");
+		return mav;
+	}
 }

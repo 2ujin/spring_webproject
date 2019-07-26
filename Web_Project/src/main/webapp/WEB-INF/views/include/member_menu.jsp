@@ -7,7 +7,7 @@
 		<a href="${path}/member/list.do">회원관리</a>
 		<a href="${path}/board/list.do">게시글 관리</a>
 		<a href="${path}">메인으로</a>		
-	</div>
+	
 	<c:choose>
 		<c:when test="${sessionScope.userId==null}">
 			<a href="${path}/login/login.do">로그인</a>
@@ -17,4 +17,5 @@
 			<a href="${path}/login/logout.do">로그아웃</a>
 		</c:otherwise>
 	</c:choose>
+	</div>
 	<hr>

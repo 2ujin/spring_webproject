@@ -1,6 +1,8 @@
 package com.example.project.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -41,9 +43,21 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public List<BoardVO> listAll() {
+	public List<BoardVO> listAll(String searchoption, String keyword) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("board.listAll");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchoption", searchoption);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectList("board.listAll", map);
+	}
+	
+	public int countArticle(String searchoption, String keyword) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchoption", searchoption);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("board.countArticle", map);
 	}
 
 	@Override
@@ -51,5 +65,4 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		sqlSession.update("board.increaseViewcnt", bno);
 	}
-
 }
