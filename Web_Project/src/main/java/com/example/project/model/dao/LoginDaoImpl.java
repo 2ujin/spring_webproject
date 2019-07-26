@@ -9,15 +9,15 @@ import org.springframework.stereotype.Repository;
 import com.example.project.model.dto.MemberVO;
 
 @Repository
-public class LoginDAOImpl implements LoginDAO{
-
+public class LoginDaoImpl implements LoginDao{
+	
 	@Inject
 	SqlSession sqlSession;
-	
+
 	@Override
 	public boolean loginCheck(MemberVO vo) {
 		// TODO Auto-generated method stub
-		String name = sqlSession.selectOne("login.loginCheck", vo);
+		String name=sqlSession.selectOne("login.loginCheck",vo);
 		System.out.print(name);
 		return (name==null)?false:true;
 	}
@@ -25,7 +25,8 @@ public class LoginDAOImpl implements LoginDAO{
 	@Override
 	public MemberVO viewMember(MemberVO vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("login.viewMember", vo);
+		return sqlSession.selectOne("login.viewMember",vo);
+		
 	}
 
 	@Override

@@ -5,23 +5,28 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
-import com.example.project.model.dao.LoginDAOImpl;
+import com.example.project.model.dao.LoginDao;
+import com.example.project.model.dao.LoginDaoImpl;
 import com.example.project.model.dto.MemberVO;
 
 @Service
 public class LoginServiceImpl implements LoginService{
+
 	@Inject
-	LoginDAOImpl loginDao;
+	LoginDaoImpl loginDao;
 	
 	@Override
 	public boolean loginCheck(MemberVO vo, HttpSession session) {
 		
-		boolean result = loginDao.loginCheck(vo);
+		// TODO Auto-generated method stub
+		boolean result=loginDao.loginCheck(vo);
 		if(result) {
-			MemberVO vo2 = viewMember(vo);			
+			MemberVO vo2=viewMember(vo);
+			
 			session.setAttribute("userId", vo2.getUserId());
 			session.setAttribute("userName", vo2.getUserName());
 		}
+		
 		return result;
 	}
 
@@ -35,6 +40,14 @@ public class LoginServiceImpl implements LoginService{
 	public void logout(HttpSession session) {
 		// TODO Auto-generated method stub
 		session.invalidate();
+		
 	}
 
 }
+
+
+
+
+
+
+

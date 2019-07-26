@@ -12,9 +12,8 @@ import com.example.project.service.LoginService;
 
 @Controller
 public class LoginController {
-	
 	@Inject
-	LoginService loginServie;
+	LoginService loginService;
 	
 	@RequestMapping("login/login.do")
 	public String login() {
@@ -24,28 +23,37 @@ public class LoginController {
 	@RequestMapping("login/loginCheck.do")
 	public ModelAndView loginCheck(MemberVO vo, HttpSession session) {
 		
-		boolean result = loginServie.loginCheck(vo, session);
-		System.out.println(result);
-		ModelAndView mav = new ModelAndView();
+		boolean result=loginService.loginCheck(vo, session);
+		ModelAndView mav= new ModelAndView();
 		
-		if(result == true) {
+		if(result==true) {
 			mav.setViewName("login/home");
-			mav.addObject("msg", "success");	
+			mav.addObject("msg","success");
 		}else {
 			mav.setViewName("login/login");
-			mav.addObject("msg", "failure");
+			mav.addObject("msg","failure");
 		}
-		
 		return mav;
-		// mav.setViewName("login/login");
+		
 	}
 	
 	@RequestMapping("login/logout.do")
 	public ModelAndView logout(HttpSession session) {
-		loginServie.logout(session);
-		ModelAndView mav = new ModelAndView();
+		loginService.logout(session);
+		ModelAndView mav=new ModelAndView();
 		mav.setViewName("login/login");
-		mav.addObject("msg", "logout");
+		mav.addObject("msg","logout");
 		return mav;
 	}
+	
+
 }
+
+
+
+
+
+
+
+
+

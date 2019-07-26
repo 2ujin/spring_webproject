@@ -18,67 +18,93 @@ import com.example.project.service.BoardServiceimpl;
 
 @Controller
 public class BoardController {
-
+	
 	@Inject
 	BoardServiceimpl boardService;
 	
-	//1. 게시글의 목록 보기
-	@RequestMapping("/board/list.do") //원래는 list.do
-	public ModelAndView list(@RequestParam(defaultValue="title")String searchoption, @RequestParam(defaultValue="")String keyword){
+	//1. 게시글의 목록 보기 
+	@RequestMapping("/board/list.do")
+	public ModelAndView list(@RequestParam(defaultValue="title")String searchOption,
+			@RequestParam(defaultValue="")String keyword) 
+	{
+		List<BoardVO> list =boardService.listAll(searchOption, keyword);
+		int count=boardService.countArticle(searchOption,keyword);
 		
-		List<BoardVO> list = boardService.listAll(searchoption, keyword);
-		int count = boardService.countArticle(searchoption, keyword);
-		
-		ModelAndView mav = new ModelAndView();
-		Map<String, Object> map = new HashMap<String, Object>();
+		ModelAndView mav=new ModelAndView();
+		Map<String,Object> map=new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("count", count);
-		map.put("searchoption", searchoption);
+		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
-		mav.addObject("map", map);
+		mav.addObject("map",map);
 		mav.setViewName("board/list");
 		return mav;
-		
 	}
-	
-	//2. 게시글 상세보기 (보기, 조회수 증가)
+
+	//2. 게시글 상세보기 (보기+조회수 증가)
 	@RequestMapping("/board/view.do")
-	public ModelAndView view(@RequestParam int bno, HttpSession session) {
-		boardService.increaseViewcnt(bno, session);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("board/view");
-		mav.addObject("dto", boardService.read(bno));
-		return mav;
+	public ModelAndView view(@RequestParam int bno, HttpSession session)
+	{
+	 boardService.increaseViewcnt(bno,session);
+	 ModelAndView mav=new ModelAndView();
+	 mav.setViewName("board/view");
+	 mav.addObject("dto", boardService.read(bno));
+	 return mav;
 	}
 	
-	//3.게시글 수정하기
+	//3. 게시글 수정하기 
 	@RequestMapping("/board/update.do")
-	public String update(@ModelAttribute BoardVO vo) {
+	public String update(@ModelAttribute BoardVO vo)
+	{
 		boardService.update(vo);
 		return "redirect:list.do";
 	}
-	
-	//4.게시글 삭제하기
+		
+	//4. 게시글 삭제하기 
 	@RequestMapping("/board/delete.do")
-	public String delete(@RequestParam int bno) {
+	public String delete(@RequestParam int bno)
+	{
 		boardService.delete(bno);
 		return "redirect:list.do";
 	}
 	
-	//5. 게시글 추가하기
-	@RequestMapping("/board/write.do")
+	//5. 게시글 작성하기
+	
+	@RequestMapping("board/write.do")
 	public String write() {
 		return "board/write";
 	}
 	
-	//6. 게시글 작성하기
-	@RequestMapping("/board/insert.do")
-	public String insert(BoardVO vo, HttpSession session) {
-		String writer = (String)session.getAttribute("userId");
+	//6. 게시글 작성한거 처리하기 
+	@RequestMapping("board/insert.do")
+	public String insert(@ModelAttribute BoardVO vo,HttpSession session)
+	{
+		String writer =(String)session.getAttribute("userId");
 		vo.setWriter(writer);
 		
 		boardService.create(vo);
 		return "redirect:list.do";
 	}
 	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

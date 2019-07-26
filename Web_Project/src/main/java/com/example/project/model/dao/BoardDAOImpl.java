@@ -10,59 +10,67 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.example.project.model.dto.BoardVO;
-
 @Repository
-public class BoardDAOImpl implements BoardDAO{
+public class BoardDAOImpl implements BoardDAO {
 
 	@Inject
 	SqlSession sqlSession;
 	
-	
 	@Override
 	public void create(BoardVO vo) {
 		// TODO Auto-generated method stub
-		sqlSession.insert("board.insert", vo);
+		sqlSession.insert("board.insert",vo);
+		
 	}
 
 	@Override
 	public BoardVO read(int bno) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("board.view", bno);
+		return sqlSession.selectOne("board.view",bno);
 	}
 
 	@Override
 	public void update(BoardVO vo) {
 		// TODO Auto-generated method stub
-		sqlSession.update("board.update", vo);
+		sqlSession.update("board.updateArticle",vo);
 	}
 
 	@Override
 	public void delete(int bno) {
 		// TODO Auto-generated method stub
-		sqlSession.delete("board.delete", bno);
+		sqlSession.delete("board.deleteArticle",bno);
+		
 	}
 
 	@Override
-	public List<BoardVO> listAll(String searchoption, String keyword) {
+	public List<BoardVO> listAll(String searchOption, String keyword) {
 		// TODO Auto-generated method stub
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("searchoption", searchoption);
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
 		
-		return sqlSession.selectList("board.listAll", map);
+		return sqlSession.selectList("board.listAll",map);
 	}
 	
-	public int countArticle(String searchoption, String keyword) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("searchoption", searchoption);
+	public int countArticle(String searchOption, String keyword) {
+		Map<String,String> map=new HashMap<String, String>();
+		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
-		
-		return sqlSession.selectOne("board.countArticle", map);
+		return sqlSession.selectOne("board.countArticle",map);
 	}
+	
 
 	@Override
 	public void increaseViewcnt(int bno) {
 		// TODO Auto-generated method stub
-		sqlSession.update("board.increaseViewcnt", bno);
+		sqlSession.update("board.increaseViewcnt",bno);
+		
 	}
+
 }
+
+
+
+
+
+

@@ -13,51 +13,65 @@ import com.example.project.model.dto.MemberVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
-
-	@Inject
-	SqlSession sqlSession;
 	
+	@Inject
+	
+	SqlSession sqlSession;
+
 	@Override
 	public List<MemberVO> memberList() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("member.memberList");
+		return sqlSession.selectList("member.memberList") ;
 	}
 
 	@Override
 	public void insertMember(MemberVO vo) {
 		// TODO Auto-generated method stub
-		sqlSession.insert("member.insertMember", vo);
+		sqlSession.insert("member.insertMember",vo);
 	}
 
 	@Override
 	public MemberVO viewMember(String userId) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.viewMember", userId);
+		return sqlSession.selectOne("member.viewMember",userId);
 	}
 
 	@Override
 	public void updateMember(MemberVO vo) {
 		// TODO Auto-generated method stub
 		sqlSession.update("member.updateMember", vo);
-	}
-
-	@Override
-	public void deleteMember(MemberVO vo) {
-		// TODO Auto-generated method stub
-		sqlSession.delete("member.deleteMember", vo);
-	}
-
-	@Override
-	public boolean checkPw(String userId, String userPw) {
-		// TODO Auto-generated method stub
 		
-		boolean result = false;
-		Map<String, String> map = new HashMap<String, String>();
+	}
+
+	@Override
+	public void deleteMember(String userId) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("member.deleteMember",userId);
+		
+	}
+	
+	public boolean checkPw(String userId, String userPw) {
+		boolean result=false;
+		Map<String,String> map=new HashMap<String,String>();
 		map.put("userId", userId);
 		map.put("userPw", userPw);
-		int count = sqlSession.selectOne("member.checkPw", map);
+		int count=sqlSession.selectOne("member.checkPw",map);
 		if(count==1) result=true;
+		
 		return result;
 	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
