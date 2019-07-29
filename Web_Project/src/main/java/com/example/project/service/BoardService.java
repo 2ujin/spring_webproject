@@ -20,7 +20,7 @@ public interface BoardService {
 	public void delete(int bno);
 	
 	//5. 게시글 목록보기 
-	public List<BoardVO> listAll(String searchOption,String keyword) ;
+	public List<BoardVO> listAll(int start, int end, String searchOption,String keyword) ;
 	
 	//6. 게시글 조회하기 (조횟수 증가)
 	public void increaseViewcnt(int bno,HttpSession session);

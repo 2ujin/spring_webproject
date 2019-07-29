@@ -26,8 +26,12 @@
         ORDER BY 
             bno desc, 
             regdate desc
+            <include refid="paging"></include>
     </select>
     
+    <sql id="paging">
+    	limit #{start}, #{end}
+    </sql>
     
     
       
