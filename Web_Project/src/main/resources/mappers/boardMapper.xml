@@ -3,18 +3,20 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
    <mapper namespace="board">
-    <!-- 1. 목록 조회 및 검색  
+   
+    <!-- 1. 목록 조회 및 검색  -->
     <select id="listAll" resultType="com.example.project.model.dto.BoardVO">
         SELECT 
-            bno, title,  content,   writer,   regdate,  viewcnt 
+            bno, title,  content, b.regdate, viewcnt, user_name as userName,
+            (select count(*) from tbl_reply where bno = b.bno) as recent 
         FROM 
-            tbl_board
+            tbl_board b, tbl_member m
             <include refid="search"></include>
         ORDER BY 
             bno desc, 
-            regdate desc
+            b.regdate desc
     </select>
-    -->
+    
     
     <!-- 01-new. 목록 조회 및 검색   -->
     <select id="listAll" resultType="com.example.project.model.dto.BoardVO">
