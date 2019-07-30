@@ -8,7 +8,51 @@
 <%@ include file="../include/board_header.jsp" %>
 <script>
 $(document).ready(function() {
-	 $("#btnDelete").click(function() {
+	//댓글 쓰기 버튼을 눌렀을 떄 (ajax)
+	$("#btnReply").click(function(){
+		var replytext = $("#replytext").val();
+		var bno = "${dto.bno}"
+		var param = "replytext="+replytext+"&bno="+bno;	
+		
+		$.ajax({
+			type:"post",
+			url:"${path}/reply/insert.do",
+			data:param,
+			success: function(){
+				alert("등록되었습니다!!");
+				listReply2();
+			}
+		});
+	});
+	
+	$("#btnList").click(function(){
+		location.href="${path}/board/list.do?";
+		history.back();
+	});
+	
+	function listReply2(){
+		$a.jax({
+			type: "post",
+			url: "${path}/reply/listJson.do?bnp=${dto.bno}",
+			success:function(result){
+				var output = "<table>";
+				for(var i in result){
+					output += "<tr>";
+					output += "<td>" + result[i].userName;
+					output += "("+ changeData(result[i].regdate) + ")<br>";
+					output += result[i].replytext + "</td>";
+					output += "</tr>";
+				}
+				output += "</table>";
+				$("#listReply").html(output);
+			}
+				
+		});
+	}
+	
+	
+	
+	$("#btnDelete").click(function() {
 		 if(confirm("삭제하시겠습니까?"))
 		 document.form1.action='${path}/board/delete.do';
 		 document.form1.submit();		 
@@ -70,9 +114,16 @@ $(document).ready(function() {
           <input type="button" value="삭제" id="btnDelete">
 		  </c:if>
        </td>
+       <button type="button" id="btnList"> 목록 </button>
     </tr>
 </table>
 </form>
-
+	<div style="width:650px; text-align:center;">
+		<textarea row="5" cols="80" id="replytext" placeholder="댓글을 작성해주세요."></textarea><br>
+		<button type="button" id="btnReply"> 댓글작성 </button>
+	</div>
+	
+	<div id="listReply"></div>
+	
 </body>
 </html>
