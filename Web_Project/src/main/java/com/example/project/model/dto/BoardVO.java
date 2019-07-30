@@ -9,17 +9,18 @@ public class BoardVO {
 	private String writer;
 	private Date regdate;
 	private int viewcnt;
-	private int recnt; // 게시글 댓글의 조회수 
+	private String userName;
+	
+	private int recnt; //게시글 댓글의 조회수 
 	
 	
 	public int getRecnt() {
 		return recnt;
 	}
-
-	public void setRecnt(int recnt) {
-		this.recnt = recnt;
+	
+	public int setRecnt(int recnt) {
+		return recnt;
 	}
-	private String userName;
 	
 	public String getUserName() {
 		return userName;

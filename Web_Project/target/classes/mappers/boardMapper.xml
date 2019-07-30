@@ -16,28 +16,28 @@
     </select>
     -->
     
-     <select id="listAll" resultType="com.example.project.model.dto.BoardVO">
+    <!-- 01-new. 목록 조회 및 검색   -->
+    <select id="listAll" resultType="com.example.project.model.dto.BoardVO">
+    
         SELECT 
-            bno, title, content, b.regdate, viewcnt, user_name as writer
-			
+            bno,title,content,b.regdate,viewcnt,user_name as userName
         FROM 
             tbl_board b, tbl_member m
             <include refid="search"></include>
         ORDER BY 
             bno desc, 
-            regdate desc
-            <include refid="paging"></include>
+            b.regdate desc
+         <include refid="paging"></include>  
+
     </select>
     
-    <sql id="paging">
-    	limit #{start}, #{end}
-    </sql>
+   
+
     
-    
-      
+        <!-- 01-1 게시글 갯수 -->
     <select id="countArticle" resultType="int">
     SELECT COUNT(*) FROM tbl_board b, tbl_member m
-    
+    <!-- WHERE절을 include 태그로 삽입 -->
     <include refid="search"></include>
 </select>
     
@@ -48,7 +48,6 @@
         
             WHERE b.writer = m.user_id
             and
-            
             (user_name like concat('%',#{keyword},'%')
             OR content like concat('%',#{keyword},'%')
             OR title like concat('%',#{keyword},'%'))
@@ -60,9 +59,14 @@
         </otherwise>
     </choose>
 </sql>
-    
 
-    
+
+
+    	
+<sql id="paging">
+   limit #{start}, #{end}
+</sql>
+
     <!-- 01. 게시글 전체 목록 조회 
     <select id="listAll" resultType="com.example.project.model.dto.BoardVO">
         SELECT 
@@ -88,15 +92,13 @@
       
       </insert>
      
-    
+     <!-- 3. 상세 보기 -->
      <select id="view" resultType="com.example.project.model.dto.BoardVO">
-       select  bno,title,writer,content,
-                b.regdate,viewcnt,user_name as userName
-       from tbl_board b, tbl_member m
-       WHERE b.writer=m.user_id and bno=#{bno}
+       select * from tbl_board
+       where bno=#{bno}
      </select>
      
-    
+     <!-- 4. 조회수 증가 -->
      
      <update id="increaseViewcnt">
        update tbl_board set viewcnt = viewcnt+1

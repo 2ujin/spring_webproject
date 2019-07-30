@@ -3,6 +3,7 @@ package com.example.project.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,26 +17,38 @@ import com.example.project.service.ReplyService;
 
 @RestController
 public class ReplyController {
-	@Inject
-	ReplyService replyService;
-	
-	@RequestMapping("/reply/insert.do")
-	public void insert(@ModelAttribute ReplyVO vo) {
+
+	 @Inject
+	 ReplyService replyService;
+	 
+	 @RequestMapping("/reply/insert.do")
+	 public void insert(@ModelAttribute ReplyVO vo,HttpSession session) {
+		 String userId=(String)session.getAttribute("userId");
+		 vo.setReplyer(userId);
+		
 		replyService.create(vo);
-	}
-	
-	@RequestMapping("/reply/list.do") //화면을 리턴
-	public ModelAndView list(@RequestParam int bno, ModelAndView mav) {
-		List<ReplyVO>list=replyService.list(bno);
-		mav.setViewName("board/replyList");
-		mav.addObject("list", list);
-		return mav;
-	}
-	@RequestMapping("/reply/listJson.do")
-	
-	@ResponseBody //return data를 json으로 변환해서 처리
-	public List<ReplyVO>listJson(@RequestParam int bno){
-		List<ReplyVO>list = replyService.list(bno);
-		return list;
-	}
+		 
+	 }
+	 
+	 @RequestMapping("/reply/list.do") //view(화면)을 리턴
+	 public ModelAndView list(@RequestParam int bno, ModelAndView mav) 
+	 {
+	    List<ReplyVO>list=replyService.list(bno);
+	    mav.setViewName("board/replyList");
+	    mav.addObject("list",list);
+	    return mav;
+	 }
+	 
+	 @RequestMapping("/reply/listJson.do")
+	 @ResponseBody //리턴데이터를 Json으로 변환해서 처리
+	 public List<ReplyVO>listJson(@RequestParam int bno){
+		 List<ReplyVO>list=replyService.list(bno);
+		 return list;
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
 }

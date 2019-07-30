@@ -1,16 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<meta charset="UTF-8">
-<title> Home </title>
-<%@include file="../include/member_header.jsp" %>
+    <title>Home</title>
+<%@ include file="../include/member_header.jsp" %>
 </head>
 <body>
-<%@include file="../include/member_menu.jsp" %>
-	<c:if test="${msg == 'sucess'}">
-	<h2>${sessionScope.userName}(${sessoionScope.userId})님 환영합니다.</h2>
-	</c:if>
+<%@ include file="../include/member_menu.jsp" %>
+    <c:if test="${msg == 'success'}">
+    <h2>${sessionScope.userName}(${sessionScope.userId})님 환영합니다.</h2>
+    </c:if>
 </body>
 </html>

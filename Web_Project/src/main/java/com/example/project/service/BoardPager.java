@@ -1,58 +1,62 @@
 package com.example.project.service;
 
 public class BoardPager {
-	public static final int PAGE_SCALE = 10;
-	public static final int BLOCK_SCALE = 10;
+	public static int PAGE_SCALE =10;
+	
+	public static int BLOCK_SCALE = 10;
 	
 	private int curPage;
 	private int prevPage;
 	private int nextPage;
 	private int totPage;
 	private int totBlock;
+	private int curBlock;
+	private int prevBlock;
 	private int nextBlock;
 	private int pageBegin;
 	private int pageEnd;
 	private int blockBegin;
 	private int blockEnd;
-	private int curBlock;
 	
-	public BoardPager(int count, int curPage) {
-		curBlock = 1;
-		this.curPage = curPage;
-		setTotpage(count);
-		setPageRange();
-		setToBlock();
-		setBlockRange();
+	public BoardPager(int count,int curPage) {
+		curBlock=1;
 		
+		this.curPage=curPage;
+		
+		setTotPage(count);
+		
+		setPageRange();
+		setTotBlock();
+		setBlockRange();
 	}
-
-	public void setBlockRange() {
+	
+	public void setBlockRange()
+	{
 		curBlock=(int)Math.ceil((curPage-1)/BLOCK_SCALE)+1;
-		blockBegin = (curBlock-1)*BLOCK_SCALE+1;
-		blockEnd= blockBegin + BLOCK_SCALE -1;
-		if(blockEnd > totPage) blockEnd = totPage;
+		blockBegin=(curBlock-1)*BLOCK_SCALE +1;
+		blockEnd=blockBegin+BLOCK_SCALE -1;
+		if(blockEnd > totPage) blockEnd=totPage;
 		prevPage=(curPage==1)?1:(curBlock-1)*BLOCK_SCALE;
 		nextPage=curBlock>totBlock?(curBlock*BLOCK_SCALE):(curBlock*BLOCK_SCALE)+1;
-		if(nextPage>=totPage)nextPage = totPage;
+		if(nextPage>=totPage)nextPage =totPage;
+		
 	}
 	
 	public void setPageRange() {
-		pageBegin = (curPage-1)*PAGE_SCALE+1;
-		pageEnd = pageBegin+PAGE_SCALE-1;
+		pageBegin =(curPage-1)*PAGE_SCALE +1;
+		pageEnd=pageBegin+PAGE_SCALE -1;
 	}
+
 	
+
+	
+
 	public int getCurPage() {
 		return curPage;
 	}
-	
-	private void setToBlock() {
-		// TODO Auto-generated method stub
-		totBlock=(int)Math.ceil(totPage/BLOCK_SCALE);
-	}
-	
-	private void setTotpage(int count) {
-		// TODO Auto-generated method stub
-		
+
+	public void setCurPage(int curPage) {
+		this.curPage = curPage;
 	}
 
 	public int getPrevPage() {
@@ -83,8 +87,24 @@ public class BoardPager {
 		return totBlock;
 	}
 
-	public void setTotBlock(int totBlock) {
-		this.totBlock = totBlock;
+	public void setTotBlock() {
+		totBlock=(int)Math.ceil(totPage/BLOCK_SCALE);
+	}
+
+	public int getCurBlock() {
+		return curBlock;
+	}
+
+	public void setCurBlock(int curBlock) {
+		this.curBlock = curBlock;
+	}
+
+	public int getPrevBlock() {
+		return prevBlock;
+	}
+
+	public void setPrevBlock(int prevBlock) {
+		this.prevBlock = prevBlock;
 	}
 
 	public int getNextBlock() {
@@ -126,26 +146,7 @@ public class BoardPager {
 	public void setBlockEnd(int blockEnd) {
 		this.blockEnd = blockEnd;
 	}
-
-	public int getCurBlock() {
-		return curBlock;
-	}
-
-	public void setCurBlock(int curBlock) {
-		this.curBlock = curBlock;
-	}
-
-	public static int getPageScale() {
-		return PAGE_SCALE;
-	}
-
-	public static int getBlockScale() {
-		return BLOCK_SCALE;
-	}
-
-	public void setCurPage(int curPage) {
-		this.curPage = curPage;
-	}
 	
 	
+
 }

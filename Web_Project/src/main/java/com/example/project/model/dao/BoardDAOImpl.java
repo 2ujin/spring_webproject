@@ -43,21 +43,21 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> listAll(int start, int end, String searchOption, String keyword) {
+	public List<BoardVO> listAll(int start, int end,String searchOption, String keyword) {
 		// TODO Auto-generated method stub
-		Map<String, String> map=new HashMap<String, String>();
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		
-		return sqlSession.selectList("board.listAll",map);
-	}
-	
-	public int countArticle(int start, int end, String searchOption, String keyword) {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
 		map.put("start", start);
 		map.put("end", end);
+		
+		return sqlSession.selectList("board.listAll",map);
+	}
+	
+	public int countArticle(String searchOption, String keyword) {
+		Map<String,String> map=new HashMap<String, String>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
 		return sqlSession.selectOne("board.countArticle",map);
 	}
 	
@@ -67,12 +67,6 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		sqlSession.update("board.increaseViewcnt",bno);
 		
-	}
-
-	@Override
-	public int countArticle(String searchOption, String keyword) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

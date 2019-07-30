@@ -15,27 +15,31 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.project.model.dto.BoardVO;
 import com.example.project.service.BoardPager;
-import com.example.project.service.BoardServiceimpl;
+import com.example.project.service.BoardServiceImpl;
 
 @Controller
 public class BoardController {
 	
 	@Inject
-	BoardServiceimpl boardService;
+	BoardServiceImpl boardService;
 	
 	//1. 게시글의 목록 보기 
 	@RequestMapping("/board/list.do")
 	public ModelAndView list(@RequestParam(defaultValue="title")String searchOption,
 			@RequestParam(defaultValue="")String keyword, @RequestParam(defaultValue="1")int curPage) 
 	{
-		int count=boardService.countArticle(searchOption, keyword);
-		BoardPager boardPager = new BoardPager(count, curPage);
-		int start = boardPager.getPageBegin();
-		int end = boardPager.getPageEnd();
+		
+		int count=boardService.countArticle(searchOption,keyword);
 		
 		
 		
-		List<BoardVO> list =boardService.listAll(start, end, searchOption, keyword);
+		BoardPager boardPager=new BoardPager(count, curPage);
+		int start=boardPager.getPageBegin();
+		int end=boardPager.getPageEnd();				
+		
+				
+		List<BoardVO> list =boardService.listAll(start,end,searchOption, keyword);
+		
 		
 		ModelAndView mav=new ModelAndView();
 		Map<String,Object> map=new HashMap<String, Object>();
@@ -44,6 +48,7 @@ public class BoardController {
 		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
 		map.put("boardPager", boardPager);
+		
 		
 		mav.addObject("map",map);
 		mav.setViewName("board/list");

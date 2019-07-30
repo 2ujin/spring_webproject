@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.example.project.model.dto.ReplyVO;
 
-public class ReplyDAOImpl implements ReplyDAO {
+@Repository
+public class ReplyDAOImpl implements ReplyDAO{
 
 	@Inject
 	SqlSession sqlSession;
@@ -17,13 +18,13 @@ public class ReplyDAOImpl implements ReplyDAO {
 	@Override
 	public List<ReplyVO> list(int bno) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("reply.listReply", bno);
+		return sqlSession.selectList("reply.listReply",bno);
 	}
 
 	@Override
 	public void create(ReplyVO vo) {
-		sqlSession.insert("reply/insert", vo);
-		
+		// TODO Auto-generated method stub
+		sqlSession.insert("reply.insertReply",vo);
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 	}
 
 	@Override
-	public void delete(int bno) {
+	public void delete(int rno) {
 		// TODO Auto-generated method stub
 		
 	}
