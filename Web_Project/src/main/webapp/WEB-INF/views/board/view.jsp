@@ -30,18 +30,11 @@
     		
     	});
     	
-    	 
-    	
-    	
     	 $("#btnList").click(function() {
          	location.href="${path}/board/list.do?";
          	history.back();
          });
-    	 
-    	
-    	
-    	
-        
+    	   
         // 게시글 삭제 버튼 클릭이벤트
         $("#btnDelete").click(function(){
             if(confirm("삭제하시겠습니까?")){
@@ -97,10 +90,8 @@
     				output += "</tr>";
     			}
     			output += "</table>";
-    			$("#listReply").html(output);    			
-    			
+    			$("#listReply").html(output);    					
     		}
-    		//hi
     	});
     	
     }
@@ -122,6 +113,7 @@
 <body>
 <%@ include file="../include/member_menu.jsp" %>
 <h2>게시글 보기</h2>
+
 <form name="form1" method="post">
     <div>        <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
         작성일자 : <fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss"/>

@@ -18,20 +18,7 @@
     </select>
     
     
-    <!-- 01-new. 목록 조회 및 검색   -->
-    <select id="listAll" resultType="com.example.project.model.dto.BoardVO">
-    
-        SELECT 
-            bno,title,content,b.regdate,viewcnt,user_name as userName
-        FROM 
-            tbl_board b, tbl_member m
-            <include refid="search"></include>
-        ORDER BY 
-            bno desc, 
-            b.regdate desc
-         <include refid="paging"></include>  
 
-    </select>
     
    
 

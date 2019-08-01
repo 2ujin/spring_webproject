@@ -6,27 +6,17 @@
 <title>게시글 목록</title>
 <%@ include file="../include/member_header.jsp" %>
 <script type="text/javascript">
-
     $(document).ready(function(){
         $("#btnWrite").click(function(){
         
             location.href = "${path}/board/write.do";
         });
-        
-       
-
     });
     
     function list(page){
-    	
     	location.href="${path}/board/list.do?curPage="+page+"&searchOption=${map.searchOption}&keyword=${map.keyword}";
     	//~~?변수명=값&변수값=값...
     }
-    /*
-    
-    */
-    
-
 </script>
 </head>
 <body>
