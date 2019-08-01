@@ -668,9 +668,7 @@
             });
         });
 	</script>
-
 </div>
-
         <!-- inc footer s -->
 		<div id="footer">
 	    <div class="content">

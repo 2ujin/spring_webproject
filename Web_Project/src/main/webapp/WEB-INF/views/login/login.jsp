@@ -25,58 +25,88 @@
   });
 </script>
 <style>
+	body{
+		background-color: #DBD0A2;
+	}
 	.login{
-		width: 80px;
+		width: 400px;
 		height: 500px;
-		background-color: skyblue;
+		background-color: #FFC20D;
+		margin-left: auto;
+  		margin-right: auto;   
+		margin: auto;
+		border-radius: 50px;
 	}
 	h2{
-		font-family:AppleSDGothicNeoB00;
+		font-family:AppleSDGothicNeoSB00;
 		margin: auto;
 		text-align: center;
+		color: #009132;
+		font-size: 30px;
 	}
 	.loginform{
-		width: 20%;
+		width: 90%;
 		height: 30px;
 		margin-left: auto;
   		margin-right: auto;   
 		margin: auto;
 		text-align: center;
 	}
+	input{
+		width: 260px;
+		height: 30px;
+	}
+	p{
+		text-align: center;
+		font-family: AppleSDGothicNeoB00;
+		color: #A3A3A3;
+		font-size: 14px;
+	}
+	.btn{
+		background-color: #009132;
+		padding: 0;
+		border: none;
+		width: 100px;
+		height: 30px;
+		color: white;
+		line-height: 30px;
+   		display: block;
+	}
+	.not{
+	font-family: AppleSDGothicNeoB00;
+	}
+
 </style>
 </head>
 <body>
  <%@ include file="../include/member_menu.jsp" %>
- <br><br><br><br><br><br><br><br><br><br><br><br>
- <h2> Login </h2><br>
- <div class="login">sdfs  </div>
+ <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <div class="login">
+  <br><br><br><br><br><br><h2> Login </h2>
+  <p>Subway is a truly global brand.</p>
+  <br><br>
   <form name="form1" class="loginform">
-    <table width="50px">
+    <table width="150px">
        <tr>
-           <td>아이디 </td>
-           <td><input name="userId" id="userId"></td>
+           <td colspan="2"><input name="userId" id="userId"><br></td>
        </tr>
        <tr>
-           <td>비밀번호 </td>
-           <td><input type="password" name="userPw" id="userPw"></td>
+           <td colspan="2"><br><input type="password" name="userPw" id="userPw"></td>
        </tr>
        <tr>
           <td colspan="2" align="center">
-             <br><br><button type="button" id="btnLogin"> 로그인 </button>
-             <c:if test="${msg=='failure'}">
-               <div style="color:red">
-                                 아이디 또는 비밀번호가 일치하지 않습니다.
-               </div>
-             </c:if>
-             <c:if test="${msg=='logout'}">
-               <div style="color:red">
-                                 로그아웃 되었습니다.
-               </div>
-             </c:if>
+             <br><br><button type="button" id="btnLogin" class="btn"> 로그인 </div><br><br>
            </td>                       
        </tr>
     </table>
+    <br>
+       <c:if test="${msg=='failure'}">
+        <div style="color:#BF0413" class="not">아이디 또는 비밀번호가 일치하지 않습니다.</div>
+       </c:if>
+       <c:if test="${msg=='logout'}">
+        <div style="color:red">로그아웃 되었습니다.</div>
+       </c:if>
   </form>
-
+</div>
 </body>
 </html>
