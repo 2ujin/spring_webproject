@@ -60,7 +60,7 @@
 </style>
 <body>
 <%@ include file="../include/member_menu.jsp" %>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
      <div class="login">
     <br><br><br><br><br><h2> SIGN UP </h2>
     <form name="form1" method="post" action="${path}/member/insert.do">

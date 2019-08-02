@@ -25,9 +25,6 @@
   });
 </script>
 <style>
-	body{
-		background-color: #DBD0A2;
-	}
 	.login{
 		width: 400px;
 		height: 500px;
@@ -80,7 +77,7 @@
 </head>
 <body>
  <%@ include file="../include/member_menu.jsp" %>
- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
  <div class="login">
   <br><br><br><br><br><br><h2> Login </h2>
   <p>Subway is a truly global brand.</p>
