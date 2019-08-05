@@ -8,12 +8,16 @@
 
 SUBWAY 메인 페이지 (코드 참조), 로그인, 게시판
 
+* Login page
 ![KakaoTalk_20190802_114348321](https://user-images.githubusercontent.com/42020919/62468535-411d5500-b7d1-11e9-9404-2141db0f686d.png)
 
+* Write 
 ![KakaoTalk_20190802_114349233](https://user-images.githubusercontent.com/42020919/62468537-41b5eb80-b7d1-11e9-86b6-21d861dc6352.png)
 
+* Board page
 ![KakaoTalk_20190802_114347038](https://user-images.githubusercontent.com/42020919/62468540-42e71880-b7d1-11e9-967f-cffb10e49595.png)
 
+* Sign up page
 ![KakaoTalk_20190802_114347630](https://user-images.githubusercontent.com/42020919/62468541-42e71880-b7d1-11e9-894a-c616123ebc22.png)
 
 
